@@ -14,6 +14,12 @@ contract TodoList {
 // mapping the tasks with their id
    mapping(uint => Task) public tasks;
 
+   event TaskCreated(
+      uint id,
+      string content,
+      bool completed
+   );
+
 //constructor to add a default task to the to do list
 constructor() public {
    createTask("Complete your first todo list app with etherium");
@@ -23,7 +29,5 @@ constructor() public {
 function createTask(string memory _content) public {
    taskCount ++;
    tasks[taskCount] = Task(taskCount, _content, false);
-}
-}
-
-// todo tomotrrow : create the files for the frontend development
+   emit TaskCreated(taskCount, _content, false);
+}}
