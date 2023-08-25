@@ -99,6 +99,15 @@ App = {
       $newTaskTemplate.show()
     }
   },
+//create task function
+  createTask: async () => {
+    App.setLoading(true)
+    const content = $('#newTask').val()
+    //added the from:App.content because i had issue with  formatting address
+    await App.todoList.createTask(content, { from: App.account })
+    window.location.reload()
+  },
+
   setLoading: (boolean) => {
     App.loading = boolean
     const loader = $('#loader')
